@@ -1,0 +1,4 @@
+if a >= b print a
+
+if num < 1.0 print num
+

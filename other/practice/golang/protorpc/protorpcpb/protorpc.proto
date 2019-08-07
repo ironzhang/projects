@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package protorpcpb;
+
+message Request {
+	required string method = 1;
+	required uint64 seq = 2;
+}
+
+message Response {
+	required string method = 1;
+	required uint64 seq = 2;
+	required string err = 3;
+}

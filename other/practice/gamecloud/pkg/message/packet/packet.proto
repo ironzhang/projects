@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package packet;
+
+message Packet {
+	string Name = 1;
+	bytes Payload = 2;
+	uint64 Checksum = 3;
+}

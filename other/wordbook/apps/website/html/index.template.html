@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script language="javascript" type="text/javascript">
+			function playSound(src) {
+				var audio = new Audio();
+				audio.src = src
+				audio.play()
+			}
+		</script>
+	</head>
+	<body>
+		<form method="post">
+			<input type="text" name="lookup-text" value="{{.Word}}" style="font-size:32">
+			<input type="submit" name="lookup-button" value="查找单词" style="font-size:20">
+		</form>
+		<div>
+			<span style="font-size:20">{{.Word}}</span>&nbsp;&nbsp;
+			<span style="fron-size:20">[{{.PhEN}}]</span>&nbsp;&nbsp;
+			<a href="javascript:playSound('{{.Sound.EN}}')">en</a>&nbsp;&nbsp;
+			<span style="fron-size:20">[{{.PhAM}}]</span>&nbsp;&nbsp;
+			<a href="javascript:playSound('{{.Sound.AM}}')">am</a>&nbsp;&nbsp;
+			<a href="javascript:playSound('{{.Sound.TTS}}')">tts</a>
+		</div>
+		<div>
+			{{range .Parts}}
+			<span style="fron-size:20">{{.Part}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="fron-size:20">{{.Means}}</span></br>
+			{{end}}
+		</div>
+	</body>
+</html>

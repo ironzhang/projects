@@ -1,0 +1,39 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -g$/;"	m
+CODEC_H	codec.h	2;"	d
+LFLAGS	Makefile	/^LFLAGS =$/;"	m
+PROTOBUF_C_H	protobuf_c.h	2;"	d
+RM	Makefile	/^RM = rm$/;"	m
+TARGET	Makefile	/^TARGET = test$/;"	m
+buf	main.c	/^static uint8_t buf[1024];$/;"	v	file:
+decode_uint16	codec.c	/^int decode_uint16(uint16_t *x, uint8_t* buf, size_t sz) {$/;"	f
+decode_uint8	codec.c	/^int decode_uint8(uint8_t *x, uint8_t* buf, size_t sz) {$/;"	f
+encode_uint16	codec.c	/^int encode_uint16(uint16_t x, uint8_t* buf, size_t sz) {$/;"	f
+encode_uint8	codec.c	/^int encode_uint8(uint8_t x, uint8_t* buf, size_t sz) {$/;"	f
+field_count	protobuf_c.h	/^	int field_count;$/;"	m	struct:message_meta
+field_encode	protobuf_c.c	/^static int field_encode(field_meta *meta, void *msg, uint8_t *buf, size_t sz) {$/;"	f	file:
+field_meta	protobuf_c.h	/^typedef struct field_meta {$/;"	s
+field_meta	protobuf_c.h	/^}field_meta;$/;"	t	typeref:struct:field_meta
+fields	protobuf_c.h	/^	field_meta fields[];$/;"	m	struct:message_meta
+head_meta	main.c	/^message_meta head_meta = {$/;"	v
+head_t	main.c	/^typedef struct head_t {$/;"	s	file:
+head_t	main.c	/^}head_t;$/;"	t	typeref:struct:head_t	file:
+main	main.c	/^int main() {$/;"	f
+message_encode	protobuf_c.c	/^int message_encode(message_meta *meta, void *msg, uint8_t *buf, size_t sz) {$/;"	f
+message_encode_uint16	protobuf_c.c	/^static int message_encode_uint16(void *m, uint8_t *buf, size_t sz) {$/;"	f	file:
+message_encode_uint8	protobuf_c.c	/^static int message_encode_uint8(void *m, uint8_t *buf, size_t sz) {$/;"	f	file:
+message_meta	protobuf_c.h	/^typedef struct message_meta {$/;"	s
+message_meta	protobuf_c.h	/^}message_meta;$/;"	t	typeref:struct:message_meta
+metas	protobuf_c.c	/^message_meta metas[] = {$/;"	v
+msg_id	main.c	/^	uint8_t msg_id;$/;"	m	struct:head_t	file:
+name	protobuf_c.h	/^	const char *name;$/;"	m	struct:field_meta
+name	protobuf_c.h	/^	const char *name;$/;"	m	struct:message_meta
+sequence	main.c	/^	uint16_t sequence;$/;"	m	struct:head_t	file:
+tag	protobuf_c.h	/^	int tag;$/;"	m	struct:field_meta
+type	protobuf_c.h	/^	const char *type;$/;"	m	struct:field_meta

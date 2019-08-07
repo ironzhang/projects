@@ -1,0 +1,15 @@
+PUT /account/v1/user/
+{
+	"name": "iron",
+	"password": "123456"
+}
+account.Service.AddAccount
+
+DELETE /account/v1/user/:UserID
+account.Service.DeleteAccount
+
+POST /account/v1/login/:user_id
+account.Service.Login
+SetInt(UserID, user_id)
+
+hosts {"account":"localhost:5000;localhost:5001"}

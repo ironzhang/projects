@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package thingpb;
+
+message Head {
+	string MsgName = 1;
+	int32 Sequence = 2;
+}
+
+message ErrorNotice {
+	int32 Code = 1;
+	string Details = 2;
+}

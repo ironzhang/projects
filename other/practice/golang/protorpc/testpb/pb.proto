@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package testpb;
+
+message Request {
+	required string query = 1;
+}
+
+message Result {
+	required string title = 1;
+}

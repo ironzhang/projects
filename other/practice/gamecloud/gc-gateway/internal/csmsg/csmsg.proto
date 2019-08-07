@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package csmsg;
+
+enum ErrorCode {
+	Success = 0;
+}
+
+// 连接
+message Connect {
+	string Signature = 1;    // 签名
+	string Identifier = 2;   // 身份
+	string Nonce = 3;        // 随机字符串
+	fixed64 TokenTS = 4;     // Token的生成时间戳, 代表Token的版本
+	fixed64 Timestamp = 5;   // 签名的时间戳
+	int64 Timeout = 6;       // 允许签名的超时时间
+}
+
+// 连接响应
+message Connack {
+	ErrorCode Code = 1;
+}
+
+// 断开连接
+message Disconnect {
+}
+
+// 心跳
+message Heartbeat {
+}
+
+// 传输
+message Transport {
+	bytes Payload = 1;
+}

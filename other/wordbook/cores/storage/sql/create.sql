@@ -1,0 +1,19 @@
+DROP DATABASE IF EXISTS wordbook;
+CREATE DATABASE if NOT EXISTS wordbook DEFAULT CHARACTER SET=utf8 DEFAULT COLLATE=utf8_unicode_ci;
+
+use wordbook;
+
+-- words
+CREATE TABLE IF NOT EXISTS words (
+	word VARCHAR(64) NOT NULL COMMENT 'word',
+	symbol TEXT NOT NULL COMMENT 'symbol',
+	PRIMARY KEY (word)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- priorities
+CREATE TABLE IF NOT EXISTS priorities (
+	word VARCHAR(64) NOT NULL COMMENT 'word',
+	priority INT NOT NULL COMMENT 'priority',
+	PRIMARY KEY (word)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

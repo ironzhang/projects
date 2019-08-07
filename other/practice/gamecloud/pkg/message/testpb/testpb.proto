@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package testpb;
+
+message Header {
+	int64 Seq = 1;
+}
+
+message GetAccessPointReq {
+	Header Header = 1;
+	string AccessType = 2;
+}
+
+message GetAccessPointRsp {
+	Header Header = 1;
+	repeated string Addrs = 2;
+}

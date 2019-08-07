@@ -1,0 +1,13 @@
+{
+	"Level": "info",
+	"Development": false,
+	"DisableCaller": false,
+	"DisableStacktrace": false,
+	"DisableStderr": false,
+	"EnableFile": false,
+	"FileOptions": {
+		"Dir": "",
+		"Program": "",
+		"MaxBytes": 0
+	}
+}
