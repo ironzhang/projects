@@ -26,3 +26,8 @@ func TestSliceForeach(t *testing.T) {
 		}
 	}
 }
+
+func TestIntMod(t *testing.T) {
+	fmt.Printf("%d\n", 5%3)
+	fmt.Printf("%d\n", -5%3)
+}
