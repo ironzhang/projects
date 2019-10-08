@@ -1,0 +1,11 @@
+digraph html {
+	node[shape=box];
+	c:n -> d [label=n];
+	c1:ne -> d1 [label=ne];
+	c2:e -> d2 [label=e];
+	b:se -> a [label=se];
+	c3:e -> d3 [label=e];
+	c4:sw -> d4 [label=sw];
+	c5:w -> d5 [label=w];
+	c6:nw -> d6 [label=nw];
+}
