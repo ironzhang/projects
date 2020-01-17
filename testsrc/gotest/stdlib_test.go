@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 	"testing"
 )
 
@@ -15,4 +16,5 @@ func TestPrintContext(t *testing.T) {
 	ctx1 := context.WithValue(ctx0, "key", "value")
 	fmt.Printf("%v\n", ctx0)
 	fmt.Printf("%v\n", ctx1)
+	os.Exit(0)
 }

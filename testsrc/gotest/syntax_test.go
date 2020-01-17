@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"testing"
+	"unsafe"
 )
 
 func TestSliceRange(t *testing.T) {
@@ -35,4 +36,15 @@ func TestIntMod(t *testing.T) {
 
 func TestIntMat(t *testing.T) {
 	fmt.Printf("%d\n", math.MaxInt16)
+}
+
+func TestSizeof(t *testing.T) {
+	var a interface{}
+	var ch chan interface{}
+	fmt.Printf("interface{}: %d\n", unsafe.Sizeof(a))
+	fmt.Printf("chan: %d\n", unsafe.Sizeof(ch))
+}
+
+func TestPanic(t *testing.T) {
+	//panic("panic")
 }
