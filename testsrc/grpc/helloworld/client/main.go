@@ -6,15 +6,18 @@ import (
 	"os"
 	"time"
 
-	"github.com/ironzhang/projects/testsrc/grpc/protobuf/greet"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/balancer/roundrobin"
+
+	"github.com/ironzhang/projects/testsrc/grpc/protobuf/greet"
+	_ "github.com/ironzhang/projects/testsrc/grpc/resolver"
 )
 
 func main() {
-	const addr = "localhost:50051"
-	conn, err := grpc.Dial(addr, grpc.WithInsecure())
+	const target = "registry://addrs/localhost:50051,localhost:50052"
+	conn, err := grpc.Dial(target, grpc.WithInsecure(), grpc.WithBalancerName(roundrobin.Name))
 	if err != nil {
-		log.Fatalf("failed to dial to %s: %v", addr, err)
+		log.Fatalf("failed to dial to %s: %v", target, err)
 	}
 	defer conn.Close()
 	c := greet.NewGreeterClient(conn)

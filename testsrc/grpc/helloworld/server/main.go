@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"log"
 	"net"
 
@@ -17,15 +18,17 @@ func (p *Greeter) SayHello(ctx context.Context, req *greet.HelloRequest) (*greet
 }
 
 func main() {
-	const addr = ":50051"
-	ln, err := net.Listen("tcp", addr)
+	addr := flag.String("addr", ":50051", "listen address")
+	flag.Parse()
+
+	ln, err := net.Listen("tcp", *addr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
 	greet.RegisterGreeterServer(s, &Greeter{})
 
-	log.Printf("grpc serve on %v", addr)
+	log.Printf("grpc serve on %v", *addr)
 	if err = s.Serve(ln); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
