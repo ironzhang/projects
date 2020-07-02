@@ -23,6 +23,13 @@ func main() {
 	if len(os.Args) > 1 {
 		name = os.Args[1]
 	}
+
+	for i := 0; i < 5; i++ {
+		SayHello(c, name)
+	}
+}
+
+func SayHello(c greet.GreeterClient, name string) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
