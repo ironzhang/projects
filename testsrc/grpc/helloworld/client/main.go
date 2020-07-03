@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	const target = "registry://addrs/localhost:50051,localhost:50052"
+	const target = "registry://seeds/localhost:50051,localhost:50052"
 	conn, err := grpc.Dial(target, grpc.WithInsecure(), grpc.WithBalancerName(balancer.Name))
 	if err != nil {
 		log.Fatalf("failed to dial to %s: %v", target, err)

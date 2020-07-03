@@ -12,6 +12,9 @@ type resolver struct {
 }
 
 func (p *resolver) start(target gr.Target) error {
+	if target.Authority != "seeds" {
+		return errors.New("invalid target")
+	}
 	endpoints := strings.Split(target.Endpoint, ",")
 	if len(endpoints) <= 0 {
 		return errors.New("invalid target")
