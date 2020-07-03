@@ -4,39 +4,39 @@ import (
 	"errors"
 	"strings"
 
-	"google.golang.org/grpc/resolver"
+	gr "google.golang.org/grpc/resolver"
 )
 
-type Resolver struct {
-	cc resolver.ClientConn
+type resolver struct {
+	cc gr.ClientConn
 }
 
-func (p *Resolver) start(target resolver.Target) error {
+func (p *resolver) start(target gr.Target) error {
 	endpoints := strings.Split(target.Endpoint, ",")
 	if len(endpoints) <= 0 {
 		return errors.New("invalid target")
 	}
 
-	addrs := make([]resolver.Address, 0, len(endpoints))
+	addrs := make([]gr.Address, 0, len(endpoints))
 	for _, endpoint := range endpoints {
-		addrs = append(addrs, resolver.Address{Addr: endpoint})
+		addrs = append(addrs, gr.Address{Addr: endpoint})
 	}
-	p.cc.UpdateState(resolver.State{Addresses: addrs})
+	p.cc.UpdateState(gr.State{Addresses: addrs})
 
 	return nil
 }
 
-func (p *Resolver) ResolveNow(resolver.ResolveNowOptions) {
+func (p *resolver) ResolveNow(gr.ResolveNowOptions) {
 }
 
-func (p *Resolver) Close() {
+func (p *resolver) Close() {
 }
 
 type builder struct{}
 
-func (builder) Build(target resolver.Target, cc resolver.ClientConn,
-	opts resolver.BuildOptions) (resolver.Resolver, error) {
-	r := &Resolver{
+func (builder) Build(target gr.Target, cc gr.ClientConn,
+	opts gr.BuildOptions) (gr.Resolver, error) {
+	r := &resolver{
 		cc: cc,
 	}
 	if err := r.start(target); err != nil {
@@ -50,5 +50,5 @@ func (builder) Scheme() string {
 }
 
 func init() {
-	resolver.Register(builder{})
+	gr.Register(builder{})
 }

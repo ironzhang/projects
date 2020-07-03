@@ -7,15 +7,15 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/balancer/roundrobin"
 
+	"github.com/ironzhang/projects/testsrc/grpc/balancer"
 	"github.com/ironzhang/projects/testsrc/grpc/protobuf/greet"
 	_ "github.com/ironzhang/projects/testsrc/grpc/resolver"
 )
 
 func main() {
 	const target = "registry://addrs/localhost:50051,localhost:50052"
-	conn, err := grpc.Dial(target, grpc.WithInsecure(), grpc.WithBalancerName(roundrobin.Name))
+	conn, err := grpc.Dial(target, grpc.WithInsecure(), grpc.WithBalancerName(balancer.Name))
 	if err != nil {
 		log.Fatalf("failed to dial to %s: %v", target, err)
 	}
@@ -27,8 +27,9 @@ func main() {
 		name = os.Args[1]
 	}
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 500; i++ {
 		SayHello(c, name)
+		time.Sleep(time.Second)
 	}
 }
 
@@ -38,7 +39,8 @@ func SayHello(c greet.GreeterClient, name string) {
 
 	r, err := c.SayHello(ctx, &greet.HelloRequest{Name: name})
 	if err != nil {
-		log.Fatalf("failed to say hello: %v", err)
+		log.Printf("failed to say hello: %v", err)
+		return
 	}
 	log.Printf("Greeting: %s", r.Mesg)
 }
