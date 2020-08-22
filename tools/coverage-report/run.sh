@@ -1,4 +1,5 @@
 #!/bin/bash
 
-./coverage-report <coverage.data >coverage.html
+./coverage-report MD <coverage.data >coverage.md
+./coverage-report HTML <coverage.data >coverage.html
 

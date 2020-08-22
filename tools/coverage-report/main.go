@@ -11,6 +11,11 @@ import (
 )
 
 func main() {
+	kind := "MD"
+	if len(os.Args) >= 2 {
+		kind = os.Args[1]
+	}
+
 	r := bufio.NewReader(os.Stdin)
 
 	// 一级服务覆盖率
@@ -28,7 +33,7 @@ func main() {
 	}
 
 	// 输出报告
-	err = WriteReport(os.Stdout, firsts, cores)
+	err = WriteReport(os.Stdout, kind, firsts, cores)
 	if err != nil {
 		log.Printf("write report: %v", err)
 		return
@@ -57,8 +62,7 @@ func ReadCoverages(r *bufio.Reader) (map[string]string, error) {
 	return m, nil
 }
 
-var HTML = `
-<table border="1" cellborder="0" cellspacing="0" cellpadding="4">
+var HTML = `<table border="1" cellborder="0" cellspacing="0" cellpadding="4">
 	<TR>
 	<TD>业务线</TD><TD>覆盖率</TD><TD>一级服务覆盖率</TD><TD>owner</TD>
 	</TR>
@@ -83,6 +87,12 @@ var HTML = `
 </table>
 `
 
+var MD = `|业务线|覆盖率|一级服务覆盖率|owner|
+|------|------|--------------|-----|
+{{range .}}|{{.Business}}|{{if lt .CoreCoverage 85.0}} <font color="red">{{.CoreCoverage}}</font> {{else}} {{.CoreCoverage}} {{end}}|{{if lt .FirstCoverage 95.0}} <font color="red">{{.FirstCoverage}}</font> {{else}} {{.FirstCoverage}} {{end}}|{{.Owner}}|
+{{end}}
+`
+
 type Element struct {
 	Business      string
 	CoreCoverage  float64
@@ -90,7 +100,7 @@ type Element struct {
 	Owner         string
 }
 
-func WriteReport(w io.Writer, firsts map[string]string, cores map[string]string) error {
+func WriteReport(w io.Writer, kind string, firsts map[string]string, cores map[string]string) error {
 	var orders = []string{"地图", "引擎", "国际化", "2轮车", "车服", "安全", "业务中台", "业务平台", "顺风车", "金融", "代驾", "企业", "汇总"}
 	var owners = map[string]string{
 		"地图":   "黄楚宏",
@@ -124,7 +134,16 @@ func WriteReport(w io.Writer, firsts map[string]string, cores map[string]string)
 		})
 	}
 
-	t, err := template.New("").Parse(HTML)
+	var text string
+	switch kind {
+	case "HTML":
+		text = HTML
+	case "MD":
+		text = MD
+	default:
+		text = MD
+	}
+	t, err := template.New("").Parse(text)
 	if err != nil {
 		return err
 	}
