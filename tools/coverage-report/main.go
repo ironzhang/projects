@@ -141,8 +141,8 @@ func MakeBusinessInfos(firsts, cores map[string]CoverageInfo) []BusinessInfo {
 		"安全":   "吴迪",
 		"业务中台": "曹智轶",
 		"顺风车":  "张慧",
-		"金融":   "吴迪",
-		"企业":   "曹智轶",
+		"金融":   "曹智轶",
+		"企业":   "吴迪",
 		"汇总":   "张慧",
 	}
 
