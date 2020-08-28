@@ -5,5 +5,5 @@
 }
 
 END {
-	print s
+	print substr(s, 1, length(s)-1) # substr 去除末尾空格
 }
