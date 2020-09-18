@@ -218,8 +218,9 @@ var MD = `|业务线|覆盖率|一级服务覆盖率|owner|
 {{end}}
 `
 
-var XMD = `|业务线|核心服务数量|核心服务具备服务发现能力的服务数量|核心服务覆盖率|一级服务数量|一级服务具备服务发现能力的服务数量|一级服务覆盖率|owner|
-|------|------------|----------------------------------|--------------|------------|----------------------------------|--------------|-----|
+var XMD = `
+|业务线|核心服务数量|已接入核心服务数量|核心服务覆盖率|一级服务数量|已接入一级服务数量|一级服务覆盖率|owner|
+|------|------------|------------------|--------------|------------|------------------|--------------|-----|
 {{range .}}|{{.Name}}|{{.CoreLevel.TotalNum}}|{{.CoreLevel.UsedNum}}|{{if lt .CoreLevel.Percentage 85.0}} <font color="red">{{.CoreLevel.Percentage}}</font> {{else}} {{.CoreLevel.Percentage}} {{end}}|{{.FirstLevel.TotalNum}}|{{.FirstLevel.UsedNum}}|{{if lt .FirstLevel.Percentage 95.0}} <font color="red">{{.FirstLevel.Percentage}}</font> {{else}} {{.FirstLevel.Percentage}} {{end}}|{{.Owner}}|
 {{end}}
 `
