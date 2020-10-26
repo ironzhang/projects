@@ -48,3 +48,8 @@ func TestSizeof(t *testing.T) {
 func TestPanic(t *testing.T) {
 	//panic("panic")
 }
+
+func TestDiv(t *testing.T) {
+	i := 2
+	fmt.Printf("1.0/2=%f\n", float64(1.0/float64(i)))
+}

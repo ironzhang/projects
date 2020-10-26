@@ -12,7 +12,7 @@ func SetSysTime(t time.Time) error {
 	return syscall.Settimeofday(&tv)
 }
 
-func TestTimeNow(t *testing.T) {
+func TestTimeBefore(t *testing.T) {
 	n1 := time.Now()
 	defer func() {
 		SetSysTime(n1)
