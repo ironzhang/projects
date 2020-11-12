@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -17,4 +18,9 @@ func TestPrintContext(t *testing.T) {
 	fmt.Printf("%v\n", ctx0)
 	fmt.Printf("%v\n", ctx1)
 	os.Exit(0)
+}
+
+func TestStringReplace(t *testing.T) {
+	s := strings.Replace("dc_etcd_gz01", "etcd", "registry", 1)
+	fmt.Printf("%s\n", s)
 }
