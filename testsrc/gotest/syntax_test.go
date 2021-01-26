@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 	"testing"
@@ -52,4 +53,17 @@ func TestPanic(t *testing.T) {
 func TestDiv(t *testing.T) {
 	i := 2
 	fmt.Printf("1.0/2=%f\n", float64(1.0/float64(i)))
+}
+
+func testDeferError() (err error) {
+	defer func() {
+		if err != nil {
+			fmt.Printf("err: %v\n", err)
+		}
+	}()
+	return errors.New("return defer error")
+}
+
+func TestDeferError(t *testing.T) {
+	testDeferError()
 }
