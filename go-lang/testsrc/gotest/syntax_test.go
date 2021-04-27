@@ -21,10 +21,18 @@ func TestSliceRange(t *testing.T) {
 
 func TestSliceForeach(t *testing.T) {
 	ss := []string{"a", "b", "c", "d"}
-	for i := 0; i < len(ss); i++ {
-		fmt.Println(ss[i])
+	//	for i := 0; i < len(ss); i++ {
+	//		fmt.Println(ss[i])
+	//		if i == 0 {
+	//			//fmt.Println("append e")
+	//			ss = append(ss, "e")
+	//		}
+	//	}
+
+	for i, c := range ss {
+		fmt.Println(c)
 		if i == 0 {
-			fmt.Println("append e")
+			//fmt.Println("append e")
 			ss = append(ss, "e")
 		}
 	}
@@ -52,7 +60,13 @@ func TestPanic(t *testing.T) {
 
 func TestDiv(t *testing.T) {
 	i := 2
-	fmt.Printf("1.0/2=%f\n", float64(1.0/float64(i)))
+	fmt.Printf("1.0/2=%v\n", float64(1.0/i))
+	fmt.Printf("1.0/2.0=%v\n", float64(1.0/float64(i)))
+}
+
+func TestMod(t *testing.T) {
+	x := -1
+	fmt.Printf("-1%%10=%d\n", x%10)
 }
 
 func testDeferError() (err error) {
@@ -66,4 +80,9 @@ func testDeferError() (err error) {
 
 func TestDeferError(t *testing.T) {
 	testDeferError()
+}
+
+func TestChan(t *testing.T) {
+	ch := make(chan int)
+	ch <- 1
 }
