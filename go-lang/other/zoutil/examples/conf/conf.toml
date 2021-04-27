@@ -1,0 +1,14 @@
+Node = "node"
+
+[Zerone]
+	Zerone = "DZerone"
+	Filename = ""
+	Namespace = "zerone"
+	Driver = "etcdv2"
+	Timeout = "10s"
+	ClientVerbose = 0
+	ServerVerbose = 0
+	[Zerone.Etcd]
+		Endpoints = ["http://localhost:2379"]
+		Username = ""
+		Password = ""
