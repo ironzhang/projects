@@ -67,7 +67,7 @@ func main() {
 	}
 
 	values := TemplateValues{
-		Cluster:     "hna-read-v",
+		Cluster:     "hna-v",
 		Lidc:        "hna",
 		Region:      "hn",
 		Environment: "product",
@@ -100,6 +100,13 @@ func main() {
 		},
 	}
 
+	err = t.Execute(os.Stdout, values)
+	if err != nil {
+		tlog.Errorw("template execute", "error", err)
+		return
+	}
+
+	values.Cluster = "hna-read-v"
 	err = t.Execute(os.Stdout, values)
 	if err != nil {
 		tlog.Errorw("template execute", "error", err)
