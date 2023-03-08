@@ -9,14 +9,15 @@ import (
 
 type ComponentValues struct {
 	Name         string
+	Type         string
 	Addr         string
 	Username     string
 	Password     string
 	Database     string
-	Timeout      int
-	DialTimeout  int
-	ReadTimeout  int
-	WriteTimeout int
+	Timeout      string
+	DialTimeout  string
+	ReadTimeout  string
+	WriteTimeout string
 }
 
 type TemplateValues struct {
@@ -72,19 +73,19 @@ func main() {
 		Region:      "hn",
 		Environment: "product",
 		Customs: map[string]string{
-			"ForceMasterSelect": "true",
+			"ForceMasterSelect": "$Customs.ForceMasterSelect$",
 		},
 		Components: map[string]ComponentValues{
 			"dis_api_did_m9bpef_rw": ComponentValues{
 				Name:         "dis_api_did_m9bpef_rw",
-				Addr:         "127.0.0.1:3306",
-				Username:     "root",
-				Password:     "123456",
-				Database:     "disfv4_api",
-				Timeout:      200,
-				DialTimeout:  50,
-				ReadTimeout:  100,
-				WriteTimeout: 100,
+				Addr:         "$Components.dis_api_did_m9bpef_rw.Addr$",
+				Username:     "$Components.dis_api_did_m9bpef_rw.Username$",
+				Password:     "$Components.dis_api_did_m9bpef_rw.Password$",
+				Database:     "$Components.dis_api_did_m9bpef_rw.Database$",
+				Timeout:      "$Components.dis_api_did_m9bpef_rw.Timeout$",
+				DialTimeout:  "$Components.dis_api_did_m9bpef_rw.DialTimeout$",
+				ReadTimeout:  "$Components.dis_api_did_m9bpef_rw.ReadTimeout$",
+				WriteTimeout: "$Components.dis_api_did_m9bpef_rw.WriteTimeout$",
 			},
 			"dis_api_did_m9bpef_r": ComponentValues{
 				Name:         "dis_api_did_m9bpef_r",
@@ -92,10 +93,10 @@ func main() {
 				Username:     "root",
 				Password:     "123456",
 				Database:     "disfv4_api",
-				Timeout:      200,
-				DialTimeout:  50,
-				ReadTimeout:  100,
-				WriteTimeout: 100,
+				Timeout:      "200",
+				DialTimeout:  "50",
+				ReadTimeout:  "100",
+				WriteTimeout: "100",
 			},
 		},
 	}
