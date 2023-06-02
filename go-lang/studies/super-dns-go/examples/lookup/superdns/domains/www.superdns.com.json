@@ -1,0 +1,41 @@
+{
+	"Domain": "www.superdns.com",
+	"Clusters": {
+		"hna": {
+			"Name": "hna",
+			"Endpoints": [
+				{
+					"Addr": "127.0.0.1:8000",
+					"State": "enabled",
+					"Weight": 100
+				},
+				{
+					"Addr": "127.0.0.2:8000",
+					"State": "enabled",
+					"Weight": 100
+				}
+			]
+		},
+		"hnc": {
+			"Name": "hnc",
+			"Endpoints": [
+				{
+					"Addr": "192.168.1.1:8000",
+					"State": "enabled",
+					"Weight": 100
+				},
+				{
+					"Addr": "128.0.0.2:8000",
+					"State": "enabled",
+					"Weight": 100
+				}
+			]
+		}
+	},
+	"DefaultDestinations": [
+		{
+			"Cluster": "hnc",
+			"Percent": 1
+		}
+	]
+}
