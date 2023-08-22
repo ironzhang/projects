@@ -86,3 +86,11 @@ func TestChan(t *testing.T) {
 	ch := make(chan int)
 	ch <- 1
 }
+
+func TestNilMap(t *testing.T) {
+	var m map[string]string
+
+	m = nil
+	fmt.Printf("m[a]=%s\n", m["a"])
+	fmt.Printf("m[b]=%s\n", m["b"])
+}
